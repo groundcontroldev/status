@@ -45,15 +45,24 @@ sites:
 status-website:
   cname: status.groundcontroldev.com
   name: Ground Control Status
-  theme: dark
+  # Ground Control colors and type (assets/theme.css, published at the site root). Fonts match the app and
+  # www.groundcontroldev.com: Figtree for text, Space Grotesk for headings and nav.
+  themeUrl: /theme.css
+  links:
+    - rel: preconnect
+      href: https://fonts.gstatic.com
+    - rel: stylesheet
+      href: https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap
   # Served from this repo, not the app, so the page keeps its logo while the app is down.
   logoUrl: https://raw.githubusercontent.com/groundcontroldev/status/master/assets/logo.png
   favicon: https://raw.githubusercontent.com/groundcontroldev/status/master/assets/logo.png
   introTitle: "**Ground Control** system status"
+  # $OWNER/$REPO are only filled in for navbar links, so links in this text are written out in full.
   introMessage: >-
     Live availability of the Ground Control app and the services behind it, checked every 5 minutes, with
     scheduled maintenance and the history of past incidents. To get incident updates by email, sign in to
-    GitHub and choose **Watch → Custom → Issues** on [this page's repository](https://github.com/$OWNER/$REPO).
+    GitHub and choose **Watch → Custom → Issues** on
+    [this page's repository](https://github.com/groundcontroldev/status).
   navbar:
     - title: Status
       href: /
