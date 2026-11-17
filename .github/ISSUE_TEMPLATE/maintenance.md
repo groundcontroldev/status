@@ -14,7 +14,7 @@ expectedDown: web-app, database
 <!--
 Fill in start and end (ISO time with offset) above. The issue closes itself at `end`.
 expectedDown / expectedDegraded take slugs from .upptimerc.yml: web-app, database, sign-in, file-storage,
-document-processing, drawing-conversion, website. Downtime for those inside the window opens no incident.
+website. Downtime for those inside the window opens no incident.
 Delete the expectedDown line if you expect no downtime. Delete this comment before saving.
 -->
 

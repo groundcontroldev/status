@@ -20,8 +20,9 @@ sites:
     url: https://app.groundcontroldev.com/api/health
     maxResponseTime: 10000
 
-  # Database, Document processing and Drawing conversion read their own field from the Web app's health route:
-  # the app checks Postgres and the two private Railway services, and reports each as "ok" or "down".
+  # Database reads its own field from the Web app's health route. That route also reports the internal services
+  # (documentProcessing, drawingConversion), which stay off this page; a service customers call directly, such
+  # as a public API, gets an entry here reading its field the same way.
   - name: Database
     slug: database
     url: https://app.groundcontroldev.com/api/health
@@ -36,16 +37,6 @@ sites:
   - name: File storage
     slug: file-storage
     url: https://data.groundcontroldev.com/storage/v1/status
-
-  - name: Document processing
-    slug: document-processing
-    url: https://app.groundcontroldev.com/api/health
-    __dangerous__body_down_if_text_missing: '"documentProcessing":"ok"'
-
-  - name: Drawing conversion
-    slug: drawing-conversion
-    url: https://app.groundcontroldev.com/api/health
-    __dangerous__body_down_if_text_missing: '"drawingConversion":"ok"'
 
   - name: Website
     slug: website
