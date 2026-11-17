@@ -41,17 +41,19 @@
     "icon": "https://icons.duckduckgo.com/ip3/data.groundcontroldev.com.ico",
     "slug": "sign-in",
     "status": "down",
-    "uptime": "100.00%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "100.00%",
-    "uptimeYear": "100.00%",
+    "uptime": "51.95%",
+    "uptimeDay": "51.95%",
+    "uptimeWeek": "51.95%",
+    "uptimeMonth": "51.95%",
+    "uptimeYear": "51.95%",
     "time": 45,
     "timeDay": 45,
     "timeWeek": 45,
     "timeMonth": 45,
     "timeYear": 45,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-11-17": 0
+    }
   },
   {
     "name": "File storage",
