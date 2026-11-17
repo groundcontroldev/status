@@ -1,0 +1,265 @@
+/*
+ * Ground Control theme for the Upptime status page, matching www.groundcontroldev.com and the app:
+ * near-black blue background, Space Grotesk uppercase headings and nav, Figtree body text, teal pills,
+ * hi-viz yellow accent. Served from assets/ at /theme.css and loaded by `themeUrl` in .upptimerc.yml.
+ *
+ * This file loads before Upptime's global.css, so structural rules are prefixed with `html body` to win. A few
+ * properties Upptime's component styles set with stacked classes (e.g. `a.svelte-x.svelte-x`) need
+ * !important; those are marked. The variables below are the ones Upptime's own themes set.
+ */
+
+:root {
+  --gc-bg: #0b1014;
+  --gc-surface: #121a20;
+  --gc-surface-raised: #182229;
+  --gc-border: #26323b;
+  --gc-text: #f7f7f7;
+  --gc-text-muted: #9aa3ab;
+  --gc-teal: #17a8b0;
+  --gc-teal-deep: #00565a;
+  --gc-teal-ink: #051b1d;
+  --gc-hi-viz: #f7ff00;
+  --gc-up: #02b7a5;
+  --gc-down: #ff8d8e;
+  --gc-degraded: #ebd863;
+
+  --body-background-color: var(--gc-bg);
+  --body-text-color: var(--gc-text);
+  --card-background-color: var(--gc-surface);
+  --card-border-color: var(--gc-border);
+  --nav-background-color: var(--gc-bg);
+  --nav-border-bottom-color: var(--gc-border);
+  --nav-current-border-bottom-color: var(--gc-hi-viz);
+  --up-border-left-color: var(--gc-up);
+  --down-border-left-color: var(--gc-down);
+  --down-background-color: #2a1416;
+  --degraded-border-left-color: var(--gc-degraded);
+  --tag-color: var(--gc-bg);
+  --tag-up-background-color: var(--gc-up);
+  --tag-down-background-color: var(--gc-down);
+  --tag-degraded-background-color: var(--gc-degraded);
+  --change-background-color: var(--gc-teal-deep);
+  --code-color: var(--gc-text);
+  --code-background-color: var(--gc-surface-raised);
+  --error-button-border-color: var(--gc-teal);
+  --error-button-background-color: var(--gc-teal);
+  --error-button-color: var(--gc-bg);
+  --submit-button-border-color: var(--gc-teal);
+  --submit-button-background-color: var(--gc-teal);
+  --submit-button-color: var(--gc-bg);
+  --graph-opacity: 1;
+  --graph-filter: none;
+
+  color-scheme: dark;
+}
+
+/* Type */
+
+html body {
+  font-family: Figtree, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body nav {
+  font-family: "Space Grotesk", Arial, sans-serif;
+}
+
+html body h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 2.25rem;
+}
+
+html body h1 strong {
+  color: var(--gc-hi-viz);
+}
+
+html body h2,
+html body h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+}
+
+html body h3 {
+  color: var(--gc-text-muted);
+  opacity: 1;
+}
+
+html body h4 {
+  font-weight: 600;
+}
+
+html body p.lead {
+  font-size: 1.05rem;
+  color: var(--gc-text-muted);
+}
+
+html body p.lead strong {
+  color: var(--gc-text);
+}
+
+html body a {
+  text-underline-offset: 0.2em;
+}
+
+html body p a,
+html body .lead a {
+  color: var(--gc-teal);
+}
+
+html body p a:hover,
+html body .lead a:hover {
+  color: var(--gc-text);
+}
+
+/* Nav: wordmark-style title, uppercase pill links like the landing page */
+
+html body nav {
+  font-weight: 700;
+  margin-bottom: 3rem;
+  padding: 0 1.5rem;
+}
+
+html body nav .logo {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+}
+
+html body nav .logo img {
+  height: 2.25rem !important;
+  border-radius: 0.375rem !important;
+}
+
+html body nav ul {
+  gap: 0.25rem;
+}
+
+html body nav ul a {
+  padding: 0.45rem 1rem !important;
+  margin: 1.25rem 0 !important;
+  border: 1px solid var(--gc-teal-deep);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+html body nav ul a:hover {
+  background: var(--gc-teal-ink);
+  border-color: var(--gc-teal);
+}
+
+html body nav ul a[aria-current] {
+  background: var(--gc-teal-ink);
+  border-color: var(--gc-teal);
+  border-bottom-width: 1px;
+}
+
+/* Cards */
+
+html body article {
+  border-radius: 0.75rem;
+  padding: 1.1rem 1.35rem;
+}
+
+html body article + article {
+  margin-top: 0.75rem;
+}
+
+html body article.up,
+html body article.down,
+html body article.degraded {
+  border-left-width: 0.25rem;
+}
+
+/* Response-time graphs are fixed-color PNGs; a card-colored wash tones them down to a quiet teal. */
+html body article.graph {
+  background-image: linear-gradient(rgb(18 26 32 / 0.72), rgb(18 26 32 / 0.72)), var(--background) !important;
+}
+
+html body article .data {
+  font-variant-numeric: tabular-nums;
+}
+
+html body .tag {
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* 24h / 7d / 30d range picker as pills */
+
+html body form.r label {
+  margin-left: 0.35rem !important;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--gc-border);
+  border-radius: 999px;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+html body form.r input:checked + label {
+  border-color: var(--gc-teal);
+  background: var(--gc-teal-ink);
+  color: var(--gc-text);
+}
+
+/* Buttons */
+
+html body .submit-button,
+html body a.error-button {
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+html body footer {
+  color: var(--gc-text-muted);
+  font-size: 0.875rem;
+  opacity: 1;
+}
+
+html body footer a {
+  color: var(--gc-text-muted);
+}
+
+@media (max-width: 640px) {
+  html body h1 {
+    font-size: 1.6rem;
+  }
+
+  html body nav .logo {
+    float: none;
+  }
+
+  html body nav .container {
+    flex-wrap: wrap;
+  }
+
+  html body nav ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding-bottom: 0.75rem;
+  }
+
+  html body nav ul a {
+    margin: 0 !important;
+    padding: 0.35rem 0.8rem !important;
+    font-size: 0.72rem;
+  }
+}
