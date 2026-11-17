@@ -1,31 +1,74 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Ground Control public status page: https://status.groundcontroldev.com
+# Upptime checks every site below every 5 minutes from GitHub Actions and publishes the page to GitHub Pages,
+# so it keeps working when Railway or Supabase is down. Procedures: docs/status-page.md in gcd-app.
+owner: groundcontroldev
+repo: status
 
+# Repository secrets the checks below may use (Settings → Secrets and variables → Actions). This list is the
+# complete allowlist: a secret not named here never reaches a check.
+secrets:
+  - SUPABASE_PUBLISHABLE_KEY # Same value as the app's NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (production).
+
+# Opened downtime issues are assigned here.
+assignees:
+  - mdeyo
+
+# Slugs are referenced by maintenance issues (expectedDown) and incident labels; don't rename them.
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Web app
+    slug: web-app
+    url: https://app.groundcontroldev.com/api/health
+    maxResponseTime: 10000
+
+  # Database, Document processing and Drawing conversion read their own field from the Web app's health route:
+  # the app checks Postgres and the two private Railway services, and reports each as "ok" or "down".
+  - name: Database
+    slug: database
+    url: https://app.groundcontroldev.com/api/health
+    __dangerous__body_down_if_text_missing: '"database":"ok"'
+
+  - name: Sign-in
+    slug: sign-in
+    url: https://data.groundcontroldev.com/auth/v1/health
+    headers:
+      - "apikey: $SUPABASE_PUBLISHABLE_KEY"
+
+  - name: File storage
+    slug: file-storage
+    url: https://data.groundcontroldev.com/storage/v1/status
+
+  - name: Document processing
+    slug: document-processing
+    url: https://app.groundcontroldev.com/api/health
+    __dangerous__body_down_if_text_missing: '"documentProcessing":"ok"'
+
+  - name: Drawing conversion
+    slug: drawing-conversion
+    url: https://app.groundcontroldev.com/api/health
+    __dangerous__body_down_if_text_missing: '"drawingConversion":"ok"'
+
+  - name: Website
+    slug: website
+    url: https://www.groundcontroldev.com
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.groundcontroldev.com
+  name: Ground Control Status
+  theme: dark
+  # Served from this repo, not the app, so the page keeps its logo while the app is down.
+  logoUrl: https://raw.githubusercontent.com/groundcontroldev/status/master/assets/logo.png
+  favicon: https://raw.githubusercontent.com/groundcontroldev/status/master/assets/logo.png
+  introTitle: "**Ground Control** system status"
+  introMessage: >-
+    Live availability of the Ground Control app and the services behind it, checked every 5 minutes, with
+    scheduled maintenance and the history of past incidents. To get incident updates by email, sign in to
+    GitHub and choose **Watch → Custom → Issues** on [this page's repository](https://github.com/$OWNER/$REPO).
   navbar:
     - title: Status
       href: /
-    - title: GitHub
+    - title: Ground Control
+      href: https://www.groundcontroldev.com
+    - title: Sign in
+      href: https://app.groundcontroldev.com
+    - title: Get updates
       href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration

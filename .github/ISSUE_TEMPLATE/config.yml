@@ -1,8 +1,6 @@
-blank_issues_enabled: true
+# Issues here drive the public status page, so the public is sent to support instead of filing them.
+blank_issues_enabled: false
 contact_links:
-  - name: Feature requests and ideas
-    url: https://github.com/orgs/upptime/discussions/new?category=ideas
-    about: Suggest an idea for this project
-  - name: Questions
-    url: https://github.com/orgs/upptime/discussions/new?category=q-a
-    about: Please ask and answer questions here
+  - name: Ground Control support
+    url: https://www.groundcontroldev.com
+    about: Questions or problems with Ground Control? Contact us through our website.
