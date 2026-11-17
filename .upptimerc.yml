@@ -46,8 +46,9 @@ status-website:
   cname: status.groundcontroldev.com
   name: Ground Control Status
   # Ground Control colors and type (assets/theme.css, published at the site root). Fonts match the app and
-  # www.groundcontroldev.com: Figtree for text, Space Grotesk for headings and nav.
-  themeUrl: /theme.css
+  # www.groundcontroldev.com: Figtree for text, Space Grotesk for headings and nav. Keep this URL absolute:
+  # with a relative one the site export crawls it into a folder and the build fails copying theme.css.
+  themeUrl: https://status.groundcontroldev.com/theme.css
   links:
     - rel: preconnect
       href: https://fonts.gstatic.com
